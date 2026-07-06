@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Donate to Gavi Foundation and Trust using QR / Bank Transfer" />
+  <title>Donate | Gavi Foundation and Trust</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --green:#169a52;
+      --green-dark:#0e7a3f;
+      --blue:#1297d4;
+      --blue-dark:#0b78aa;
+
+      --text:#1b2430;
+      --muted:#586174;
+      --bg:#ffffff;
+      --bg-soft:#f6fbff;
+      --border:#e7eef6;
+
+      --shadow: 0 10px 25px rgba(12, 24, 38, 0.08);
+      --radius: 18px;
+    }
+
+    *{box-sizing:border-box;}
+    body{
+      margin:0;
+      font-family:"Poppins", sans-serif;
+      color:var(--text);
+      background:var(--bg);
+      line-height:1.6;
+    }
+    a{color:inherit; text-decoration:none;}
+    img{max-width:100%; display:block;}
+    .container{width:min(1100px, 92%); margin:0 auto;}
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      background:rgba(255,255,255,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid var(--border);
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:14px 0;
+      gap:14px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:210px;
+    }
+    .brand img{width:48px; height:48px; object-fit:contain;}
+    .brand .title{display:flex; flex-direction:column; line-height:1.1;}
+    .brand .title strong{font-size:16px;}
+    .brand .title span{font-size:12px; color:var(--muted);}
+
+    .menu{
+      display:flex;
+      align-items:center;
+      gap:20px;
+    }
+    .menu a{
+      font-size:14px;
+      color:var(--muted);
+      font-weight:500;
+      padding:8px 10px;
+      border-radius:10px;
+      transition:0.2s ease;
+    }
+    .menu a:hover{color:var(--text); background:var(--bg-soft);}
+    .menu a.active{
+      color:var(--text);
+      background:linear-gradient(90deg, rgba(18,151,212,0.12), rgba(22,154,82,0.12));
+      border:1px solid var(--border);
+    }
+
+    .actions{display:flex; align-items:center; gap:10px;}
+    .btn{
+      border:none;
+      outline:none;
+      cursor:pointer;
+      padding:10px 14px;
+      border-radius:12px;
+      font-weight:700;
+      font-size:14px;
+      transition:0.2s ease;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      white-space:nowrap;
+    }
+    .btn-primary{
+      background:linear-gradient(90deg, var(--blue), var(--green));
+      color:#fff;
+    }
+    .btn-outline{
+      background:#fff;
+      border:1px solid var(--border);
+      color:var(--text);
+    }
+
+    .hamburger{
+      display:none;
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:10px 12px;
+      cursor:pointer;
+      font-weight:700;
+    }
+    .mobileMenu{display:none; padding:10px 0 16px;}
+    .mobileMenu a{
+      display:block;
+      padding:10px 12px;
+      border-radius:12px;
+      color:var(--muted);
+      font-weight:500;
+    }
+    .mobileMenu a:hover{background:var(--bg-soft); color:var(--text);}
+
+    .pageHero{
+      background:
+        radial-gradient(circle at 12% 20%, rgba(18,151,212,0.16), transparent 48%),
+        radial-gradient(circle at 85% 40%, rgba(22,154,82,0.16), transparent 50%),
+        linear-gradient(180deg, #ffffff, #f7fbff);
+      padding:46px 0 26px;
+      border-bottom:1px solid var(--border);
+    }
+    .pageHero h1{margin:0 0 8px; font-size:34px;}
+    .pageHero p{margin:0; color:var(--muted);}
+
+    section{padding:52px 0;}
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+      align-items:start;
+    }
+
+    .card{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      padding:20px;
+      box-shadow: 0 10px 22px rgba(12,24,38,0.04);
+    }
+    .card h2{margin:0 0 10px; font-size:18px;}
+    .muted{color:var(--muted); font-size:14px;}
+
+    .qrBox{
+      margin-top:14px;
+      border-radius:18px;
+      border:1px dashed rgba(18,151,212,0.50);
+      background: linear-gradient(180deg, rgba(18,151,212,0.08), rgba(22,154,82,0.06));
+      padding:14px;
+      display:flex;
+      gap:14px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    .qrBox img{
+      width:220px;
+      height:220px;
+      object-fit:contain;
+      border-radius:18px;
+      border:1px solid var(--border);
+      background:#fff;
+      padding:10px;
+    }
+
+    .steps{
+      margin-top:10px;
+      padding-left:18px;
+      color:var(--muted);
+      font-size:14px;
+    }
+    .steps li{margin-bottom:8px;}
+
+    .bankRow{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      padding:12px 0;
+      border-top:1px solid var(--border);
+      font-size:14px;
+      flex-wrap:wrap;
+    }
+    .bankRow:first-of-type{border-top:none; padding-top:0;}
+    .bankRow span{color:var(--muted);}
+    .bankRow b{color:var(--text);}
+
+    .noteBox{
+      margin-top:14px;
+      padding:14px;
+      border:1px solid var(--border);
+      border-radius:18px;
+      background:var(--bg-soft);
+      font-size:14px;
+    }
+
+    footer{
+      background:#0c2230;
+      color:#cfe5f3;
+      padding:34px 0;
+      margin-top:40px;
+    }
+    .footerGrid{
+      display:grid;
+      grid-template-columns: 1.2fr 1fr 1fr 1fr;
+      gap:18px;
+    }
+    .mutedFooter{color:rgba(207,229,243,0.75); font-size:14px;}
+    .footerTitle{font-weight:700; margin:0 0 10px;}
+    .footerLinks a{
+      display:block;
+      padding:6px 0;
+      font-size:14px;
+      color:rgba(207,229,243,0.85);
+    }
+    .footerLinks a:hover{color:#fff;}
+    .copyright{
+      margin-top:18px;
+      padding-top:14px;
+      border-top:1px solid rgba(255,255,255,0.12);
+      color:rgba(207,229,243,0.75);
+      font-size:13px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    @media (max-width: 980px){
+      .menu{display:none;}
+      .hamburger{display:inline-flex;}
+      .grid{grid-template-columns:1fr;}
+      .footerGrid{grid-template-columns:1fr 1fr;}
+    }
+    @media (max-width: 520px){
+      .footerGrid{grid-template-columns:1fr;}
+      .pageHero h1{font-size:28px;}
+      .qrBox img{width:190px; height:190px;}
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="index.html">
+          <img src="assets/img/logo.png" alt="Gavi Foundation and Trust Logo">
+          <div class="title">
+            <strong>Gavi Foundation and Trust</strong>
+            <span>Educate • Care • Conserve</span>
+          </div>
+        </a>
+
+        <nav class="menu">
+          <a href="index.html">Home</a>
+          <a href="about.html">About Us</a>
+          <a href="events.html">Events</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="team.html">Team</a>
+          <a class="active" href="donate.html">Donate</a>
+          <a href="contact.php">Contact</a>
+        </nav>
+
+        <div class="actions">
+          <a class="btn btn-outline" href="gallery.html">View Gallery</a>
+          <a class="btn btn-primary" href="donate.html">Donate Now</a>
+          <button class="hamburger" id="hamburgerBtn">☰</button>
+        </div>
+      </div>
+
+      <div class="mobileMenu" id="mobileMenu">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="events.html">Events</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="team.html">Team</a>
+        <a href="donate.html">Donate</a>
+        <a href="contact.php">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <div class="pageHero">
+    <div class="container">
+      <h1>Donate</h1>
+      <p>Your support helps us distribute notebooks and study materials to underprivileged students.</p>
+    </div>
+  </div>
+
+  <!-- DONATE CONTENT -->
+  <section>
+    <div class="container">
+      <div class="grid">
+
+        <!-- LEFT: QR -->
+        <div class="card">
+          <h2>Donate via QR / UPI</h2>
+          <p class="muted">
+            Scan the QR code using any UPI app and support our education, health and conservation initiatives.
+          </p>
+
+          <div class="qrBox">
+            <!-- Using your existing QR placeholder image -->
+            <img src="assets/img/qr-placeholder.png" alt="Donate QR Code">
+
+            <div>
+              <b>How to Donate</b>
+              <ol class="steps">
+                <li>Open any UPI app (GPay / PhonePe / Paytm / BHIM)</li>
+                <li>Scan QR code and enter amount</li>
+                <li>Complete payment</li>
+                <li>You may send screenshot on WhatsApp for confirmation</li>
+              </ol>
+
+              <a class="btn btn-primary"
+                 target="_blank"
+                 href="https://wa.me/919844987888?text=Hello%20Gavi%20Foundation%20and%20Trust%2C%20I%20have%20donated.%20Sharing%20the%20payment%20screenshot.">
+                 🟢 Send Screenshot on WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: Bank Details -->
+        <div class="card">
+          <h2>Bank Details</h2>
+          <p class="muted">You can also donate through bank transfer using the details below.</p>
+
+          <div class="bankRow"><span>Account Name</span> <b>GAVI FOUNDATION and TRUST (Regd.)</b></div>
+          <div class="bankRow"><span>Bank Name</span> <b>Indian Bank</b></div>
+          <div class="bankRow"><span>Branch</span> <b>Dr. Chinnaswamy Vanijya Sankeerna</b></div>
+          <div class="bankRow"><span>Address</span> <b>01st Cross, Bramarambha Badavane, Chamarajanagara - 571313</b></div>
+          <div class="bankRow"><span>Account Type</span> <b>Current Account</b></div>
+          <div class="bankRow"><span>Account Number</span> <b>8138643867</b></div>
+          <div class="bankRow"><span>IFSC Code</span> <b>IDIB000C008</b></div>
+
+          <div class="noteBox">
+            <b>Note:</b>
+            <div class="muted" style="margin-top:6px;">
+              After donation, you may message us on WhatsApp with transaction details.
+              We will acknowledge your support.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footerGrid">
+
+        <div>
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+            <img src="assets/img/logo.png" alt="Logo" style="width:46px; height:46px; background:#fff; border-radius:16px; padding:6px;">
+            <div>
+              <div class="footerTitle">Gavi Foundation and Trust</div>
+              <div class="mutedFooter">Educate • Care • Conserve</div>
+            </div>
+          </div>
+          <div class="mutedFooter">
+            Supporting underprivileged students and rural communities through education, health, and conservation initiatives.
+          </div>
+        </div>
+
+        <div>
+          <div class="footerTitle">Quick Links</div>
+          <div class="footerLinks">
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="events.html">Events</a>
+            <a href="gallery.html">Gallery</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footerTitle">Support</div>
+          <div class="footerLinks">
+            <a href="donate.html">Donate</a>
+            <a href="team.html">Team</a>
+            <a href="contact.php">Contact</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footerTitle">Contact</div>
+          <div class="mutedFooter">
+            <b>GAVI FOUNDATION and TRUST (Regd.)</b><br/>
+            “Sri Gavi Kuteera”<br/>
+            Kannegala Village and Post,<br/>
+            Santhemarahalli Hobli,<br/>
+            Chamarajanagara Taluk and District - 571115<br/><br/>
+            📞 <b>9844987888</b><br/>
+            ✉️ <b>info@gavifoundationtrust.org.in</b>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="copyright">
+        <div>© <span id="year"></span> Gavi Foundation and Trust. All Rights Reserved.</div>
+        
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const hamburgerBtn = document.getElementById("hamburgerBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+    hamburgerBtn.addEventListener("click", () => {
+      mobileMenu.style.display = mobileMenu.style.display === "block" ? "none" : "block";
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>

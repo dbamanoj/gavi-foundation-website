@@ -1,0 +1,4 @@
+[15-Jan-2026 18:07:35 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Call to undefined function mail() in /home/gavifoun/public_html/contact.php:42
+Stack trace:
+#0 {main}
+  thrown in /home/gavifoun/public_html/contact.php on line 42

@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="About Gavi Foundation and Trust - supporting underprivileged students and rural communities across Karnataka through education, health initiatives, and environmental conservation." />
+  <title>About Us | Gavi Foundation and Trust</title>
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --green:#169a52;
+      --green-dark:#0e7a3f;
+      --blue:#1297d4;
+      --blue-dark:#0b78aa;
+
+      --text:#1b2430;
+      --muted:#586174;
+      --bg:#ffffff;
+      --bg-soft:#f6fbff;
+      --border:#e7eef6;
+
+      --shadow: 0 10px 25px rgba(12, 24, 38, 0.08);
+      --radius: 18px;
+    }
+
+    *{box-sizing:border-box;}
+    body{
+      margin:0;
+      font-family:"Poppins", sans-serif;
+      color:var(--text);
+      background:var(--bg);
+      line-height:1.6;
+    }
+    a{color:inherit; text-decoration:none;}
+    img{max-width:100%; display:block;}
+
+    .container{width:min(1200px, 92%); margin:0 auto;}
+
+    /* Header */
+    header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      background:rgba(255,255,255,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid var(--border);
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:14px 0;
+      gap:14px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:210px;
+    }
+    .brand img{
+      width:48px;
+      height:48px;
+      object-fit:contain;
+    }
+    .brand .title{
+      display:flex;
+      flex-direction:column;
+      line-height:1.1;
+    }
+    .brand .title strong{font-size:16px;}
+    .brand .title span{font-size:12px; color:var(--muted);}
+
+    .menu{
+      display:flex;
+      align-items:center;
+      gap:20px;
+    }
+    .menu a{
+      font-size:14px;
+      color:var(--muted);
+      font-weight:500;
+      padding:8px 10px;
+      border-radius:10px;
+      transition:0.2s ease;
+    }
+    .menu a:hover{color:var(--text); background:var(--bg-soft);}
+    .menu a.active{
+      color:var(--text);
+      background:linear-gradient(90deg, rgba(18,151,212,0.12), rgba(22,154,82,0.12));
+      border:1px solid var(--border);
+    }
+
+    .actions{display:flex; align-items:center; gap:10px;}
+    .btn{
+      border:none;
+      outline:none;
+      cursor:pointer;
+      padding:10px 14px;
+      border-radius:12px;
+      font-weight:600;
+      font-size:14px;
+      transition:0.2s ease;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      white-space:nowrap;
+    }
+    .btn-primary{
+      background:linear-gradient(90deg, var(--blue), var(--green));
+      color:#fff;
+    }
+    .btn-primary:hover{transform: translateY(-1px);}
+    .btn-outline{
+      background:#fff;
+      border:1px solid var(--border);
+      color:var(--text);
+    }
+    .btn-outline:hover{background:var(--bg-soft); transform: translateY(-1px);}
+
+    .hamburger{
+      display:none;
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:10px 12px;
+      cursor:pointer;
+      font-weight:700;
+    }
+    .mobileMenu{display:none; padding:10px 0 16px;}
+    .mobileMenu a{
+      display:block;
+      padding:10px 12px;
+      border-radius:12px;
+      color:var(--muted);
+      font-weight:500;
+    }
+    .mobileMenu a:hover{background:var(--bg-soft); color:var(--text);}
+
+    /* Page Hero */
+    .pageHero{
+      background:
+        radial-gradient(circle at 12% 20%, rgba(18,151,212,0.16), transparent 48%),
+        radial-gradient(circle at 85% 40%, rgba(22,154,82,0.16), transparent 50%),
+        linear-gradient(180deg, #ffffff, #f7fbff);
+      padding:46px 0 26px;
+      border-bottom:1px solid var(--border);
+    }
+    .pageHeroGrid{
+      display:grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap:18px;
+      align-items:center;
+    }
+    .pageHero h1{
+      margin:0 0 8px;
+      font-size:36px;
+      line-height:1.15;
+      letter-spacing:-0.4px;
+    }
+    .pageHero p{
+      margin:0;
+      color:var(--muted);
+      max-width:70ch;
+    }
+    .crumbs{
+      margin-top:12px;
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      color:var(--muted);
+      font-size:13px;
+    }
+    .crumbs a{color:var(--muted);}
+    .crumbs a:hover{color:var(--text);}
+
+    .heroSideCard{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:16px;
+      box-shadow: var(--shadow);
+    }
+    .heroSideCard strong{
+      display:block;
+      margin-bottom:6px;
+      font-size:14px;
+    }
+    .heroSideCard p{
+      font-size:13px;
+    }
+
+    /* Sections */
+    section{padding:52px 0;}
+    .sectionTitle{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:18px;
+    }
+    .sectionTitle h2{
+      margin:0;
+      font-size:28px;
+      letter-spacing:-0.2px;
+    }
+    .sectionTitle p{
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
+      max-width:60ch;
+    }
+
+    .card{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:20px;
+      box-shadow: 0 10px 22px rgba(12,24,38,0.04);
+    }
+
+    /* Impact stats */
+    .stats{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap:14px;
+      margin-top:18px;
+    }
+    .stat{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      padding:16px;
+      box-shadow: 0 10px 22px rgba(12,24,38,0.04);
+    }
+    .stat strong{display:block; font-size:20px; margin-bottom:4px;}
+    .stat span{color:var(--muted); font-size:13px;}
+
+    /* Two-column content */
+    .twoCol{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+      margin-top:18px;
+    }
+    .list{
+      margin:0;
+      padding-left:18px;
+      color:var(--muted);
+      font-size:14px;
+    }
+    .list li{margin-bottom:8px;}
+
+    /* Focus areas cards */
+    .cards{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+      margin-top:18px;
+    }
+    .focusCard{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      padding:18px;
+      box-shadow: 0 10px 22px rgba(12,24,38,0.04);
+      transition:0.2s ease;
+    }
+    .focusCard:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 18px 30px rgba(12,24,38,0.08);
+    }
+    .iconCircle{
+      width:44px;
+      height:44px;
+      border-radius:16px;
+      display:grid;
+      place-items:center;
+      background: linear-gradient(180deg, rgba(18,151,212,0.16), rgba(22,154,82,0.14));
+      border:1px solid var(--border);
+      margin-bottom:12px;
+      font-size:18px;
+    }
+    .focusCard h3{margin:0 0 8px; font-size:16px;}
+    .focusCard p{margin:0; color:var(--muted); font-size:14px;}
+
+    /* Timeline */
+    .timeline{
+      margin-top:18px;
+      display:grid;
+      gap:12px;
+    }
+    .timelineItem{
+      display:flex;
+      gap:12px;
+      padding:16px;
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      background:#fff;
+      box-shadow: 0 10px 22px rgba(12,24,38,0.04);
+    }
+    .dot{
+      width:12px;
+      height:12px;
+      border-radius:50%;
+      margin-top:6px;
+      background:linear-gradient(90deg, var(--blue), var(--green));
+      flex:0 0 auto;
+    }
+    .timelineItem strong{
+      display:block;
+      margin-bottom:2px;
+      font-size:14px;
+    }
+    .timelineItem p{
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    /* CTA */
+    .cta{
+      background:linear-gradient(90deg, rgba(18,151,212,0.10), rgba(22,154,82,0.10));
+      border-top:1px solid var(--border);
+      border-bottom:1px solid var(--border);
+    }
+    .ctaBox{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:24px;
+      padding:20px;
+      box-shadow: var(--shadow);
+    }
+    .ctaBox h3{margin:0 0 6px; font-size:18px;}
+    .ctaBox p{margin:0; color:var(--muted); font-size:14px;}
+
+    /* Footer */
+    footer{
+      background:#0c2230;
+      color:#cfe5f3;
+      padding:34px 0;
+    }
+    .footerGrid{
+      display:grid;
+      grid-template-columns: 1.2fr 1fr 1fr 1fr;
+      gap:18px;
+    }
+    footer a{color:#cfe5f3;}
+    footer .muted{color:rgba(207,229,243,0.75); font-size:14px;}
+    .footerTitle{font-weight:700; margin:0 0 10px;}
+    .footerLinks a{
+      display:block;
+      padding:6px 0;
+      font-size:14px;
+      color:rgba(207,229,243,0.85);
+    }
+    .footerLinks a:hover{color:#fff;}
+    .copyright{
+      margin-top:18px;
+      padding-top:14px;
+      border-top:1px solid rgba(255,255,255,0.12);
+      color:rgba(207,229,243,0.75);
+      font-size:13px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .pageHeroGrid{grid-template-columns:1fr;}
+      .stats{grid-template-columns:repeat(2,1fr);}
+      .twoCol{grid-template-columns:1fr;}
+      .cards{grid-template-columns:1fr;}
+      .footerGrid{grid-template-columns:1fr 1fr;}
+      .menu{display:none;}
+      .hamburger{display:inline-flex;}
+    }
+    @media (max-width:520px){
+      .stats{grid-template-columns:1fr;}
+      .footerGrid{grid-template-columns:1fr;}
+      .pageHero h1{font-size:30px;}
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="index.html">
+          <img src="assets/img/logo.png" alt="Gavi Foundation and Trust Logo">
+          <div class="title">
+            <strong>Gavi Foundation and Trust</strong>
+            <span>Educate • Care • Conserve</span>
+          </div>
+        </a>
+
+        <nav class="menu">
+          <a href="index.html">Home</a>
+          <a class="active" href="about.html">About Us</a>
+          <a href="events.html">Events</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="team.html">Team</a>
+          <a href="donate.html">Donate</a>
+          <a href="contact.php">Contact</a>
+        </nav>
+
+        <div class="actions">
+          <a class="btn btn-outline" href="gallery.html">View Gallery</a>
+          <a class="btn btn-primary" href="donate.html">Donate Now</a>
+          <button class="hamburger" id="hamburgerBtn">☰</button>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div class="mobileMenu" id="mobileMenu">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="events.html">Events</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="team.html">Team</a>
+        <a href="donate.html">Donate</a>
+        <a href="contact.php">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- PAGE HERO -->
+  <div class="pageHero">
+    <div class="container">
+      <div class="pageHeroGrid">
+        <div>
+          <h1>About Gavi Foundation and Trust</h1>
+
+
+          <div class="crumbs">
+            <a href="index.html">Home</a>
+            <span>›</span>
+            <span>About Us</span>
+          </div>
+        </div>
+
+      
+      </div>
+    </div>
+  </div>
+
+
+<!-- ABOUT CONTENT (PROMOTER VERSION) -->
+<section>
+  <div class="container">
+  
+    <div class="card">
+      <p style="margin:0; color:var(--muted); font-size:14px;">
+        Founded on <b>13 August 2025</b> by <b>Mr. Prasad Shivaiah Shetty (Prasad S.)</b> – <b>Co-Founder and Managing Trustee</b>,
+        the <b>GAVI Foundation and Trust (Regd.)</b> is built on a lifelong commitment to uplift rural communities.
+        <br/><br/>
+        Born and raised in remote rural India, Mr. Shetty experienced firsthand the challenges faced by underserved communities.
+        His own journey—marked by hardship, perseverance, and a strong determination to pursue education—shaped his lifelong mission
+        to give back to society.
+        <br/><br/>
+        This mission began in <b>2010</b>, long before the Trust was formally registered. With no organizational name and only a strong
+        desire to help, he started distributing <b>free notebooks and stationery</b> to students in government schools across
+        <b>Chamarajanagara District</b>.
+        What began with support to <b>100 students</b> has today grown to benefit over <b>600 underprivileged children every year</b>.
+        This impactful work has been made possible through the dedication and contributions of <b>6–8 close friends</b>
+        who stood beside him in this noble cause.
+        <br/><br/>
+        To expand its reach, strengthen its initiatives, and serve communities on a larger scale, the <b>GAVI Foundation and Trust</b>
+        was formally established from Mr. Shetty’s native village. The organization now focuses on three core areas—<b>Education</b>,
+        <b>Health</b>, and <b>Conservation</b>—with the mission to create lasting, positive change for underprivileged communities.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+
+  <!-- IMPACT -->
+  <section style="background:var(--bg-soft); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="container">
+      <div class="sectionTitle">
+        <div>
+          <h2>Our Impact So Far</h2>
+          <p>We have served thousands of students through multiple drives and consistent community support.</p>
+        </div>
+      </div>
+
+       <div class="twoCol">
+        <div class="card">
+          <h3 style="margin:0 0 10px;">Educational Materials Distributed</h3>
+          <ul class="list">
+            <li><b>80,000+ notebooks</b></li>
+            <li><b>25,000 pens</b></li>
+            <li><b>1,000 English dictionaries</b></li>
+            <li><b>1,000 geometry boxes</b></li>
+            <li><b>10,000+ sharpeners and erasers</b></li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3 style="margin:0 0 10px;">Reach & Beneficiaries</h3>
+          <ul class="list">
+            <li>Focused on <b>rural and economically disadvantaged</b> areas</li>
+            <li>Supporting children from <b>1st to 10th Standard</b></li>
+            <li>Serving schools across <b>Karnataka</b></li>
+            <li>Conducting distribution drives <b>several times in a year</b></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOCUS AREAS -->
+  <section>
+    <div class="container">
+      <div class="sectionTitle">
+        <div>
+          <h2>Our Focus Areas</h2>
+          <p>In addition to education, we actively engage in healthcare and environmental initiatives to empower communities.</p>
+        </div>
+      </div>
+
+      <div class="cards">
+        <div class="focusCard">
+          <div class="iconCircle">📚</div>
+          <h3>Education Support</h3>
+          <p>
+            We distribute notebooks, school supplies and study materials to underprivileged students
+            to ensure continuous learning opportunities.
+          </p>
+        </div>
+
+        <div class="focusCard">
+          <div class="iconCircle">🏥</div>
+          <h3>Healthcare Initiatives</h3>
+          <p>
+            We organize health camps in remote rural areas, especially focused on senior citizens and
+            those who need basic healthcare support.
+          </p>
+        </div>
+
+        <div class="focusCard">
+          <div class="iconCircle">🌱</div>
+          <h3>Environmental Conservation</h3>
+          <p>
+            We contribute to sustainability through tree plantation drives and sapling distribution programs
+            for greener and healthier communities.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR JOURNEY -->
+  <section style="background:var(--bg-soft); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="container">
+      <div class="sectionTitle">
+        <div>
+          <h2>Our Journey</h2>
+          <p>From informal initiatives to a registered trust — expanding outreach with transparency and impact.</p>
+        </div>
+      </div>
+
+      <div class="timeline">
+        <div class="timelineItem">
+          <div class="dot"></div>
+          <div>
+            <strong>16+ Years of Service</strong>
+            <p>Consistent efforts to uplift underprivileged students and rural communities through education and social support.</p>
+          </div>
+        </div>
+
+        <div class="timelineItem">
+          <div class="dot"></div>
+          <div>
+            <strong>Informal Initiatives Before Registration</strong>
+            <p>These activities were carried out under an informal banner while expanding outreach to villages and schools.</p>
+          </div>
+        </div>
+
+        <div class="timelineItem">
+          <div class="dot"></div>
+          <div>
+            <strong>Trust Registered on 13th August 2025</strong>
+            <p>Official registration strengthened transparency, accountability and enabled broader impact across Karnataka.</p>
+          </div>
+        </div>
+
+        <div class="timelineItem">
+          <div class="dot"></div>
+          <div>
+            <strong>Ongoing & Growing Outreach</strong>
+            <p>We continue distributing educational materials, organizing health camps, and conducting plantation drives with community support.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOUNDERS NOTE -->
+  <section>
+    <div class="container">
+      <div class="sectionTitle">
+        <div>
+          <h2>Driven by Service</h2>
+          <p>A mission powered by personal commitment and support from friends and well-wishers.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <p style="margin:0; color:var(--muted); font-size:14px;">
+          The foundation was initiated and continues to be driven by the <b>Co-Founder and his brother</b>, who personally fund a significant
+          portion of the activities from their own earnings, supplemented by contributions from close friends and well-wishers.
+          <br/><br/>
+          Our mission is to create equal opportunities for rural children, empower communities through education and health, and contribute
+          meaningfully to environmental sustainability.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footerGrid">
+
+        <div>
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+            <img src="assets/img/logo.png" alt="Logo" style="width:46px; height:46px; background:#fff; border-radius:16px; padding:6px;">
+            <div>
+              <div class="footerTitle">Gavi Foundation and Trust</div>
+              <div class="muted">Educate • Care • Conserve</div>
+            </div>
+          </div>
+          <div class="muted">
+            We support underprivileged students by distributing notebooks and study materials several times each year.
+          </div>
+        </div>
+
+        <div>
+          <div class="footerTitle">Quick Links</div>
+          <div class="footerLinks">
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="events.html">Events</a>
+            <a href="gallery.html">Gallery</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footerTitle">Support</div>
+          <div class="footerLinks">
+            <a href="donate.html">Donate</a>
+            <a href="team.html">Team</a>
+            <a href="contact.php">Contact</a>
+          </div>
+        </div>
+
+        <div>
+        <div class="footerTitle">Contact</div>
+  <div class="muted">
+  <b>GAVI FOUNDATION and TRUST (Regd.)</b><br/>
+  “Sri Gavi Kuteera”, Kannegala Village and Post,Santhemarahalli Hobli,<br/>
+  Chamarajanagara Taluk & District <br/>PIN - 571115<br/>
+  📞 <b>9844987888</b><br/>
+  ✉️ <b>info@gavifoundationtrust.org.in</b>
+</div>
+        </div>
+
+      </div>
+
+      <div class="copyright">
+        <div>© <span id="year"></span> Gavi Foundation and Trust. All Rights Reserved.</div>
+            </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const hamburgerBtn = document.getElementById("hamburgerBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+    hamburgerBtn.addEventListener("click", () => {
+      mobileMenu.style.display = mobileMenu.style.display === "block" ? "none" : "block";
+    });
+
+    // Footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>

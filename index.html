@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Gavi Foundation and Trust - Educate. Care. Conserve. Supporting poor students with notebooks and study materials." />
+  <title>Gavi Foundation and Trust | Home</title>
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      /* Logo-inspired theme */
+      --green:#169a52;
+      --green-dark:#0e7a3f;
+      --blue:#1297d4;
+      --blue-dark:#0b78aa;
+
+      --text:#1b2430;
+      --muted:#586174;
+      --bg:#ffffff;
+      --bg-soft:#f6fbff;
+      --border:#e7eef6;
+
+      --shadow: 0 10px 25px rgba(12, 24, 38, 0.08);
+      --radius: 18px;
+    }
+
+    *{box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{
+      margin:0;
+      font-family: "Poppins", sans-serif;
+      color:var(--text);
+      background:var(--bg);
+      line-height:1.6;
+    }
+
+    a{color:inherit; text-decoration:none;}
+    img{max-width:100%; display:block;}
+
+    .container{
+      width:min(1200px, 92%);
+      margin:0 auto;
+    }
+
+    /* Top bar */
+    .topbar{
+      background:linear-gradient(90deg, rgba(18,151,212,0.10), rgba(22,154,82,0.10));
+      border-bottom:1px solid var(--border);
+      font-size:14px;
+    }
+    .topbar .wrap{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:10px 0;
+      color:var(--muted);
+    }
+    .topbar .left, .topbar .right{
+      display:flex;
+      gap:16px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:6px 12px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:#fff;
+    }
+
+    /* Header */
+    header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      background:rgba(255,255,255,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid var(--border);
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:14px 0;
+      gap:14px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:210px;
+    }
+    .brand img{
+      width:48px;
+      height:48px;
+      object-fit:contain;
+    }
+    .brand .title{
+      display:flex;
+      flex-direction:column;
+      line-height:1.1;
+    }
+    .brand .title strong{
+      font-size:16px;
+      letter-spacing:0.2px;
+    }
+    .brand .title span{
+      font-size:12px;
+      color:var(--muted);
+    }
+
+    .menu{
+      display:flex;
+      align-items:center;
+      gap:20px;
+    }
+    .menu a{
+      font-size:14px;
+      color:var(--muted);
+      font-weight:500;
+      padding:8px 10px;
+      border-radius:10px;
+      transition:0.2s ease;
+    }
+    .menu a:hover{
+      color:var(--text);
+      background:var(--bg-soft);
+    }
+
+    .actions{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .btn{
+      border:none;
+      outline:none;
+      cursor:pointer;
+      padding:10px 14px;
+      border-radius:12px;
+      font-weight:600;
+      font-size:14px;
+      transition:0.2s ease;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      box-shadow:none;
+      white-space:nowrap;
+    }
+    .btn-primary{
+      background:linear-gradient(90deg, var(--blue), var(--green));
+      color:#fff;
+    }
+    .btn-primary:hover{transform: translateY(-1px);}
+    .btn-outline{
+      background:#fff;
+      border:1px solid var(--border);
+      color:var(--text);
+    }
+    .btn-outline:hover{
+      background:var(--bg-soft);
+      transform: translateY(-1px);
+    }
+
+    /* Mobile nav */
+    .hamburger{
+      display:none;
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:10px 12px;
+      cursor:pointer;
+      font-weight:700;
+    }
+    .mobileMenu{
+      display:none;
+      padding:10px 0 16px;
+    }
+    .mobileMenu a{
+      display:block;
+      padding:10px 12px;
+      border-radius:12px;
+      color:var(--muted);
+      font-weight:500;
+    }
+    .mobileMenu a:hover{background:var(--bg-soft); color:var(--text);}
+
+    /* Hero */
+    .hero{
+      position:relative;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at 12% 20%, rgba(18,151,212,0.16), transparent 48%),
+        radial-gradient(circle at 85% 40%, rgba(22,154,82,0.16), transparent 50%),
+        linear-gradient(180deg, #ffffff, #f7fbff);
+      padding:54px 0 32px;
+    }
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      align-items:center;
+      gap:26px;
+    }
+    .hero h1{
+      font-size:40px;
+      line-height:1.15;
+      margin:0 0 12px;
+      letter-spacing:-0.5px;
+    }
+    .hero p{
+      margin:0 0 18px;
+      color:var(--muted);
+      max-width:55ch;
+    }
+
+    .badges{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin:18px 0 10px;
+    }
+    .badge{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:999px;
+      padding:7px 12px;
+      font-size:13px;
+      color:var(--muted);
+      box-shadow: 0 6px 18px rgba(12,24,38,0.04);
+    }
+
+    .heroCard{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      padding:18px;
+      box-shadow: var(--shadow);
+    }
+    .heroCard .miniTitle{
+      font-weight:700;
+      font-size:14px;
+      margin:0 0 8px;
+    }
+    .heroCard .miniText{
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
+    }
+    .heroCard .qrBox{
+      margin-top:12px;
+      border-radius:16px;
+      border:1px dashed rgba(18,151,212,0.45);
+      background: linear-gradient(180deg, rgba(18,151,212,0.08), rgba(22,154,82,0.05));
+      padding:14px;
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+    .qrBox img{
+      width:88px;
+      height:88px;
+      object-fit:cover;
+      border-radius:14px;
+      border:1px solid var(--border);
+      background:#fff;
+    }
+
+    /* Sections */
+    section{padding:52px 0;}
+    .sectionTitle{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:18px;
+    }
+    .sectionTitle h2{
+      margin:0;
+      font-size:28px;
+      letter-spacing:-0.2px;
+    }
+    .sectionTitle p{
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
+      max-width:55ch;
+    }
+
+    /* Impact */
+    .stats{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap:14px;
+    }
+    .stat{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      padding:16px;
+      box-shadow: 0 10px 22px rgba(12,24,38,0.04);
+    }
+    .stat strong{
+      display:block;
+      font-size:20px;
+      margin-bottom:4px;
+    }
+    .stat span{
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    /* Programs */
+    .cards{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+      margin-top:18px;
+    }
+    .card{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      padding:18px;
+      box-shadow: 0 10px 22px rgba(12,24,38,0.04);
+      transition:0.2s ease;
+    }
+    .card:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 18px 30px rgba(12,24,38,0.08);
+    }
+    .iconCircle{
+      width:44px;
+      height:44px;
+      border-radius:16px;
+      display:grid;
+      place-items:center;
+      background: linear-gradient(180deg, rgba(18,151,212,0.16), rgba(22,154,82,0.14));
+      border:1px solid var(--border);
+      margin-bottom:12px;
+      font-size:18px;
+    }
+    .card h3{
+      margin:0 0 8px;
+      font-size:16px;
+    }
+    .card p{
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    /* Gallery preview */
+    .galleryGrid{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap:12px;
+      margin-top:18px;
+    }
+    .galleryItem{
+      position:relative;
+      border-radius:18px;
+      overflow:hidden;
+      border:1px solid var(--border);
+      background:#fff;
+      min-height:150px;
+    }
+    .galleryItem img{
+      width:100%;
+      height:160px;
+      object-fit:cover;
+      transition:0.25s ease;
+    }
+    .galleryItem:hover img{transform:scale(1.05);}
+    .galleryItem .label{
+      position:absolute;
+      left:10px;
+      bottom:10px;
+      background:rgba(255,255,255,0.92);
+      border:1px solid var(--border);
+      color:var(--text);
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
+    }
+
+    /* Events + Team */
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+    }
+    .listCard{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      padding:18px;
+      box-shadow: 0 10px 22px rgba(12,24,38,0.04);
+    }
+    .listCard h3{
+      margin:0 0 12px;
+      font-size:16px;
+    }
+    .item{
+      display:flex;
+      align-items:flex-start;
+      gap:12px;
+      padding:12px 0;
+      border-top:1px solid var(--border);
+    }
+    .item:first-of-type{border-top:none; padding-top:0;}
+    .dot{
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      margin-top:6px;
+      background: linear-gradient(90deg, var(--blue), var(--green));
+      flex:0 0 auto;
+    }
+    .item p{
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
+    }
+    .item strong{
+      display:block;
+      margin-bottom:2px;
+      font-size:14px;
+      color:var(--text);
+    }
+
+    /* CTA */
+    .cta{
+      background:linear-gradient(90deg, rgba(18,151,212,0.10), rgba(22,154,82,0.10));
+      border-top:1px solid var(--border);
+      border-bottom:1px solid var(--border);
+    }
+    .ctaBox{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:24px;
+      padding:20px;
+      box-shadow: var(--shadow);
+    }
+    .ctaBox h3{margin:0 0 6px; font-size:18px;}
+    .ctaBox p{margin:0; color:var(--muted); font-size:14px;}
+
+    /* Footer */
+    footer{
+      background:#0c2230;
+      color:#cfe5f3;
+      padding:34px 0;
+    }
+    .footerGrid{
+      display:grid;
+      grid-template-columns: 1.2fr 1fr 1fr 1fr;
+      gap:18px;
+    }
+    footer a{color:#cfe5f3;}
+    footer .muted{color:rgba(207,229,243,0.75); font-size:14px;}
+    .footerTitle{font-weight:700; margin:0 0 10px;}
+    .footerLinks a{
+      display:block;
+      padding:6px 0;
+      font-size:14px;
+      color:rgba(207,229,243,0.85);
+    }
+    .footerLinks a:hover{color:#fff;}
+    .copyright{
+      margin-top:18px;
+      padding-top:14px;
+      border-top:1px solid rgba(255,255,255,0.12);
+      color:rgba(207,229,243,0.75);
+      font-size:13px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .heroGrid{grid-template-columns:1fr; }
+      .stats{grid-template-columns: repeat(2, 1fr);}
+      .cards{grid-template-columns: 1fr;}
+      .galleryGrid{grid-template-columns: repeat(2, 1fr);}
+      .split{grid-template-columns:1fr;}
+      .footerGrid{grid-template-columns:1fr 1fr;}
+      .menu{display:none;}
+      .hamburger{display:inline-flex;}
+      .actions{gap:8px;}
+    }
+    @media (max-width: 520px){
+      .stats{grid-template-columns: 1fr;}
+      .footerGrid{grid-template-columns:1fr;}
+      .hero h1{font-size:32px;}
+    }
+
+    /* Floating WhatsApp */
+    .whatsappFloat{
+      position:fixed;
+      right:18px;
+      bottom:18px;
+      z-index:70;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:54px;
+      height:54px;
+      border-radius:18px;
+      background: linear-gradient(180deg, var(--green), var(--green-dark));
+      color:#fff;
+      box-shadow: 0 20px 34px rgba(0,0,0,0.18);
+      border:1px solid rgba(255,255,255,0.20);
+      font-size:18px;
+    }
+    
+    /* Slider (Right to Left) */
+.sliderWrap{
+  margin-top:14px;
+  width:100%;
+  overflow:hidden;
+  border-radius:18px;
+  border:1px solid var(--border);
+  background:#fff;
+}
+
+.sliderTrack{
+  display:flex;
+  gap:12px;
+  padding:12px;
+  width:max-content;
+  animation: scrollLeft 22s linear infinite;
+}
+
+.slide{
+  flex:0 0 auto;
+  width:240px;
+  height:150px;
+  border-radius:16px;
+  overflow:hidden;
+  border:1px solid var(--border);
+  background:#f5f5f5;
+}
+
+.slide img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* Animation right -> left */
+@keyframes scrollLeft{
+  0%{ transform: translateX(0); }
+  100%{ transform: translateX(-50%); }
+}
+
+/* Pause slider on hover */
+.sliderWrap:hover .sliderTrack{
+  animation-play-state: paused;
+}
+
+    
+  </style>
+</head>
+
+<body>
+
+
+  <!-- HEADER / NAV -->
+  <header>
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="index.html">
+          <!-- Replace with your logo path -->
+          <img src="assets/img/logo.png" alt="Gavi Foundation and Trust Logo">
+          <div class="title">
+            <strong>Gavi Foundation and Trust</strong>
+            <span>Educate • Care • Conserve</span>
+          </div>
+        </a>
+
+        <nav class="menu">
+          <a href="index.html">Home</a>
+          <a href="about.html">About Us</a>
+          <a href="events.html">Events</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="team.html">Team</a>
+          <a href="contact.php">Contact</a>
+        </nav>
+
+        <div class="actions">
+          <a class="btn btn-outline" href="gallery.html">View Gallery</a>
+          <a class="btn btn-primary" href="donate.html">Donate Now</a>
+          <button class="hamburger" id="hamburgerBtn">☰</button>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div class="mobileMenu" id="mobileMenu">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="events.html">Events</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="team.html">Team</a>
+        <a href="donate.html">Donate</a>
+        <a href="contact.php">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="heroGrid">
+
+      
+
+          <h1>
+            Together, we can support <span style="color:var(--blue-dark);">every child</span>
+            with <span style="color:var(--green-dark);">education essentials</span>.
+          </h1>
+
+          <p>
+            Gavi Foundation and Trust works to support poor students by distributing notebooks,
+            school supplies and study materials several times in a year — ensuring every child has the
+            resources needed to continue learning with confidence.
+          </p>
+
+        </div>
+
+     
+     
+     <div class="heroCard">
+  <p class="miniTitle">Our Recent Activities</p>
+  <p class="miniText">Few moments from our notebook & study material distribution drives.</p>
+
+  <div class="sliderWrap">
+    <div class="sliderTrack">
+      <div class="slide"><img src="assets/img/slide1.jpg" alt="Activity Photo 1"></div>
+      <div class="slide"><img src="assets/img/slide2.jpg" alt="Activity Photo 2"></div>
+      <div class="slide"><img src="assets/img/slide3.jpg" alt="Activity Photo 3"></div>
+      <div class="slide"><img src="assets/img/slide4.jpg" alt="Activity Photo 4"></div>
+
+      <!-- Duplicate images for smooth infinite loop -->
+      <div class="slide"><img src="assets/img/slide1.jpg" alt="Activity Photo 1"></div>
+      <div class="slide"><img src="assets/img/slide2.jpg" alt="Activity Photo 2"></div>
+      <div class="slide"><img src="assets/img/slide3.jpg" alt="Activity Photo 3"></div>
+      <div class="slide"><img src="assets/img/slide4.jpg" alt="Activity Photo 4"></div>
+    </div>
+  </div>
+
+  <div style="margin-top:12px;">
+    <a class="btn btn-primary" href="gallery.html">View More Photos</a>
+  </div>
+</div>
+
+
+      </div>
+    </div>
+  </section>
+  
+  
+  <!-- ABOUT INTRO -->
+<section>
+  <div class="container">
+    <div class="sectionTitle">
+      <div>
+        <h2>About Gavi Foundation and Trust</h2>
+        <p>A registered charitable trust committed to supporting underprivileged students and rural communities across Karnataka.</p>
+      </div>
+      <a class="btn btn-outline" href="about.html">know more →</a>
+    </div>
+
+    <div class="card" style="padding:22px;">
+      <p style="margin:0; color:var(--muted); font-size:14px;">
+        We are pleased to introduce <b>Gavi Foundation and Trust</b>, a registered charitable trust established on
+        <b>13th August 2025</b>, with a long-standing commitment of over <b>16 years</b> toward uplifting underprivileged students
+        and rural communities across Karnataka.
+        <br/><br/>
+        Our foundation supports children from <b>1st Standard to 10th Standard</b>, primarily in rural and economically
+        disadvantaged areas. With the expansion of our outreach to more villages and schools across Karnataka, we have officially
+        registered the trust to strengthen transparency, accountability, and scale.
+      </p>
+
+      <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap;">
+        <span class="badge">📚 Education Support</span>
+        <span class="badge">🏥 Health Camps</span>
+        <span class="badge">🌱 Tree Plantation</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VISION & MISSION -->
+<section>
+  <div class="container">
+    <div class="sectionTitle">
+      <div>
+        <h2>Vision & Mission</h2>
+        <p>Our purpose is to uplift students, strengthen communities, and protect the environment.</p>
+      </div>
+    </div>
+
+    <div class="split">
+      <!-- Vision -->
+      <div class="listCard">
+        <h3>🌟 Vision</h3>
+        <p>
+          To build a society where every child has access to quality education, every individual enjoys basic health and well-being,
+          and communities thrive in harmony with nature.
+        </p>
+      </div>
+
+      <!-- Mission -->
+      <div class="listCard">
+        <h3>🎯 Mission</h3>
+
+        <div class="item">
+          <div class="dot"></div>
+          <div><p>To support underprivileged children by providing essential educational resources and opportunities for learning and growth.</p></div>
+        </div>
+
+        <div class="item">
+          <div class="dot"></div>
+          <div><p>To promote basic health, wellness, and preventive care among rural and underserved communities.</p></div>
+        </div>
+
+        <div class="item">
+          <div class="dot"></div>
+          <div><p>To encourage environmental responsibility and conservation practices that protect natural resources for future generations.</p></div>
+        </div>
+
+        <div class="item">
+          <div class="dot"></div>
+          <div><p>To collaborate with local communities, volunteers, and partners to drive sustainable and meaningful social impact.</p></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+ 
+  <!-- WHAT WE DO -->
+  <section style="background:var(--bg-soft); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="container">
+      <div class="sectionTitle">
+        <div>
+          <h2>What We Do</h2>
+          <p>Our programs are designed to help children continue schooling without financial burden.</p>
+        </div>
+      </div>
+
+      <div class="cards">
+        <div class="card">
+          <div class="iconCircle">📒</div>
+          <h3>Notebook Distribution</h3>
+          <p>We provide notebooks and writing materials for students who need support.</p>
+        </div>
+        <div class="card">
+          <div class="iconCircle">🎒</div>
+          <h3>Study Materials Support</h3>
+          <p>We distribute essential study materials to help students improve learning outcomes.</p>
+        </div>
+        <div class="card">
+          <div class="iconCircle">🤝</div>
+          <h3>Community Volunteering</h3>
+          <p>We encourage volunteering and community service to uplift education in society.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY PREVIEW -->
+  <section>
+    <div class="container">
+      <div class="sectionTitle">
+        <div>
+          <h2>Gallery Highlights</h2>
+          <p>Moments from our distribution drives and community activities.</p>
+        </div>
+        <a class="btn btn-outline" href="gallery.html">View Full Gallery →</a>
+      </div>
+
+      <!-- Replace these images with your real photos -->
+      <div class="galleryGrid">
+        <a class="galleryItem" href="gallery.html" title="Distribution Drive">
+          <img src="assets/img/gallery1.jpg" alt="Gallery Image 1">
+          <span class="label">Distribution Drive</span>
+        </a>
+        <a class="galleryItem" href="gallery.html" title="Students Support">
+          <img src="assets/img/gallery2.jpg" alt="Gallery Image 2">
+          <span class="label">Students Support</span>
+        </a>
+        <a class="galleryItem" href="gallery.html" title="Notebooks">
+          <img src="assets/img/gallery3.jpg" alt="Gallery Image 3">
+          <span class="label">Notebooks</span>
+        </a>
+        <a class="galleryItem" href="gallery.html" title="Volunteer Team">
+          <img src="assets/img/gallery4.jpg" alt="Gallery Image 4">
+          <span class="label">Volunteer Team</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- EVENTS + TEAM PREVIEW -->
+  <section style="background:var(--bg-soft); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="container">
+      <div class="sectionTitle">
+        <div>
+          <h2>Events & Team</h2>
+          <p>See our upcoming programs and the people behind our mission.</p>
+        </div>
+      </div>
+
+      <div class="split">
+        <div class="listCard">
+          <h3>Upcoming / Recent Events</h3>
+
+          <!-- Replace with your event names -->
+          <div class="item">
+            <div class="dot"></div>
+            <div>
+              <strong>Notebook Distribution Drive - 2026</strong>
+              <p>Supporting students with notebooks and essential supplies.</p>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="dot"></div>
+            <div>
+              <strong>Study Materials Support Program</strong>
+              <p>Distribution of learning materials for poor students.</p>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="dot"></div>
+            <div>
+              <strong>Community Volunteer Meetup</strong>
+              <p>Encouraging youth participation in social service activities.</p>
+            </div>
+          </div>
+
+          <div style="margin-top:12px;">
+            <a class="btn btn-outline" href="events.html">View All Events →</a>
+          </div>
+        </div>
+
+        <div class="listCard">
+          <h3>Our Team</h3>
+
+          <!-- Replace with your promoter/team details -->
+          <div class="item">
+            <div class="dot"></div>
+            <div>
+              <strong>Founder / Trustee</strong>
+              <p>Leading the mission of education support and community service.</p>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="dot"></div>
+            <div>
+              <strong>Co-ordinator</strong>
+              <p>Organizing distribution drives and volunteer engagement.</p>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="dot"></div>
+            <div>
+              <strong>Volunteer Team</strong>
+              <p>Helping in logistics, distribution, and outreach programs.</p>
+            </div>
+          </div>
+
+          <div style="margin-top:12px;">
+            <a class="btn btn-outline" href="team.html">Meet the Team →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="container">
+      <div class="ctaBox">
+        <div>
+          <h3>Want to support a student?</h3>
+          <p>Donate through QR and help us distribute notebooks & study materials in our next drive.</p>
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="btn btn-primary" href="donate.html">Donate Now</a>
+          <a class="btn btn-outline" href="contact.php">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footerGrid">
+
+        <div>
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+            <img src="assets/img/logo.png" alt="Logo" style="width:46px; height:46px; background:#fff; border-radius:16px; padding:6px;">
+            <div>
+              <div class="footerTitle">Gavi Foundation and Trust</div>
+              <div class="muted">Educate • Care • Conserve</div>
+            </div>
+          </div>
+
+          <div class="muted">
+            We support poor students by distributing notebooks and study materials multiple times each year.
+          </div>
+        </div>
+
+        <div>
+          <div class="footerTitle">Quick Links</div>
+          <div class="footerLinks">
+            <a href="about.html">About Us</a>
+            <a href="events.html">Events</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="donate_topics.html" style="display:none;">Hidden</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footerTitle">Support</div>
+          <div class="footerLinks">
+            <a href="donate.html">Donate</a>
+            <a href="contact.html">Contact</a>
+            <a href="team.html">Team</a>
+          </div>
+        </div>
+
+        <div>
+         <div class="footerTitle">Contact</div>
+  <div class="muted">
+  <b>GAVI FOUNDATION and TRUST (Regd.)</b><br/>
+  “Sri Gavi Kuteera”, Kannegala Village and Post,Santhemarahalli Hobli,<br/>
+  Chamarajanagara Taluk & District <br/>PIN - 571115<br/>
+  📞 <b>9844987888</b><br/>
+  ✉️ <b>info@gavifoundationtrust.org.in</b>
+</div>
+        </div>
+
+      </div>
+
+      <div class="copyright">
+        <div>© <span id="year"></span> Gavi Foundation and Trust. All Rights Reserved.</div>
+         </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp -->
+  <!-- Replace number with NGO WhatsApp number -->
+  <a class="whatsappFloat"
+     href="https://wa.me/919844987888?text=Hello%20Gavi%20Foundation%20and%20Trust%2C%20I%20want%20to%20support%20your%20work."
+     target="_blank"
+     title="Chat on WhatsApp">🟢</a>
+
+  <script>
+    // Mobile menu toggle
+    const hamburgerBtn = document.getElementById("hamburgerBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    hamburgerBtn.addEventListener("click", () => {
+      mobileMenu.style.display = mobileMenu.style.display === "block" ? "none" : "block";
+    });
+
+    // Footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

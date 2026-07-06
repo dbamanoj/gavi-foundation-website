@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Gallery - Gavi Foundation and Trust" />
+  <title>Gallery | Gavi Foundation and Trust</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --green:#169a52;
+      --blue:#1297d4;
+
+      --text:#1b2430;
+      --muted:#586174;
+      --bg:#ffffff;
+      --bg-soft:#f6fbff;
+      --border:#e7eef6;
+
+      --shadow: 0 10px 25px rgba(12, 24, 38, 0.08);
+      --radius: 18px;
+    }
+
+    *{box-sizing:border-box;}
+    body{
+      margin:0;
+      font-family:"Poppins", sans-serif;
+      color:var(--text);
+      background:var(--bg);
+      line-height:1.6;
+    }
+    a{color:inherit; text-decoration:none;}
+    img{max-width:100%; display:block;}
+    .container{width:min(1100px, 92%); margin:0 auto;}
+
+    /* Header */
+    header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      background:rgba(255,255,255,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid var(--border);
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:14px 0;
+      gap:14px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:210px;
+    }
+    .brand img{width:48px; height:48px; object-fit:contain;}
+    .brand .title{display:flex; flex-direction:column; line-height:1.1;}
+    .brand .title strong{font-size:16px;}
+    .brand .title span{font-size:12px; color:var(--muted);}
+
+    .menu{
+      display:flex;
+      align-items:center;
+      gap:20px;
+    }
+    .menu a{
+      font-size:14px;
+      color:var(--muted);
+      font-weight:500;
+      padding:8px 10px;
+      border-radius:10px;
+      transition:0.2s ease;
+    }
+    .menu a:hover{color:var(--text); background:var(--bg-soft);}
+    .menu a.active{
+      color:var(--text);
+      background:linear-gradient(90deg, rgba(18,151,212,0.12), rgba(22,154,82,0.12));
+      border:1px solid var(--border);
+    }
+
+    .actions{display:flex; align-items:center; gap:10px;}
+    .btn{
+      border:none;
+      outline:none;
+      cursor:pointer;
+      padding:10px 14px;
+      border-radius:12px;
+      font-weight:700;
+      font-size:14px;
+      transition:0.2s ease;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      white-space:nowrap;
+      background:#fff;
+      border:1px solid var(--border);
+    }
+    .btn-primary{
+      background:linear-gradient(90deg, var(--blue), var(--green));
+      color:#fff;
+      border:none;
+    }
+
+    .hamburger{
+      display:none;
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:10px 12px;
+      cursor:pointer;
+      font-weight:700;
+    }
+    .mobileMenu{display:none; padding:10px 0 16px;}
+    .mobileMenu a{
+      display:block;
+      padding:10px 12px;
+      border-radius:12px;
+      color:var(--muted);
+      font-weight:500;
+    }
+    .mobileMenu a:hover{background:var(--bg-soft); color:var(--text);}
+
+    /* Hero */
+    .pageHero{
+      background:
+        radial-gradient(circle at 12% 20%, rgba(18,151,212,0.16), transparent 48%),
+        radial-gradient(circle at 85% 40%, rgba(22,154,82,0.16), transparent 50%),
+        linear-gradient(180deg, #ffffff, #f7fbff);
+      padding:46px 0 26px;
+      border-bottom:1px solid var(--border);
+    }
+    .pageHero h1{margin:0 0 8px; font-size:34px;}
+    .pageHero p{margin:0; color:var(--muted);}
+
+    section{padding:52px 0;}
+
+    /* Album grid */
+    .albumGrid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+      margin-top:18px;
+    }
+    .albumCard{
+      border:1px solid var(--border);
+      border-radius:18px;
+      overflow:hidden;
+      background:#fff;
+      cursor:pointer;
+      box-shadow: 0 10px 22px rgba(12,24,38,0.04);
+      transition:0.2s ease;
+    }
+    .albumCard:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 18px 30px rgba(12,24,38,0.08);
+    }
+    .albumCover{
+      height:200px;
+      overflow:hidden;
+      background:#f3f6fb;
+    }
+    .albumCover img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transition:0.25s ease;
+    }
+    .albumCard:hover .albumCover img{transform:scale(1.05);}
+
+    .albumInfo{
+      padding:14px;
+    }
+    .albumInfo h3{
+      margin:0 0 6px;
+      font-size:15px;
+    }
+    .albumMeta{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      color:var(--muted);
+      font-size:13px;
+    }
+    .pill{
+      display:inline-flex;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:var(--bg-soft);
+      font-size:12px;
+      color:var(--muted);
+    }
+
+    /* Album View */
+    .albumHeader{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:14px;
+      flex-wrap:wrap;
+    }
+    .albumHeader h2{margin:0; font-size:22px;}
+    .albumHeader p{margin:0; color:var(--muted); font-size:14px; max-width:65ch;}
+
+    .photoGrid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:12px;
+      margin-top:14px;
+    }
+    .photoItem{
+      position:relative;
+      overflow:hidden;
+      border-radius:18px;
+      border:1px solid var(--border);
+      cursor:pointer;
+      background:#fff;
+    }
+    .photoItem img{
+      width:100%;
+      height:220px;
+      object-fit:cover;
+      transition:0.25s ease;
+    }
+    .photoItem:hover img{transform:scale(1.05);}
+
+    /* Lightbox */
+    .lightbox{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.78);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:1000;
+      padding:18px;
+    }
+    .lightbox.open{display:flex;}
+    .lightboxContent{
+      width:min(980px, 96%);
+      background:#fff;
+      border-radius:20px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,0.22);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.30);
+      position:relative;
+    }
+    .lightboxTop{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:12px 14px;
+      border-bottom:1px solid var(--border);
+      background:linear-gradient(90deg, rgba(18,151,212,0.08), rgba(22,154,82,0.06));
+    }
+    .lightboxTop b{font-size:14px;}
+    .closeBtn{
+      border:none;
+      cursor:pointer;
+      padding:8px 12px;
+      border-radius:12px;
+      background:#fff;
+      border:1px solid var(--border);
+      font-weight:800;
+    }
+    .lightboxImgWrap{
+      background:#000;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .lightboxImg{
+      width:100%;
+      max-height:75vh;
+      object-fit:contain;
+      background:#000;
+    }
+
+    .navBtns{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      width:100%;
+      display:flex;
+      justify-content:space-between;
+      padding:0 10px;
+      pointer-events:none;
+    }
+    .navBtns button{
+      pointer-events:auto;
+      border:none;
+      cursor:pointer;
+      width:44px;
+      height:44px;
+      border-radius:16px;
+      background:rgba(255,255,255,0.92);
+      border:1px solid var(--border);
+      font-size:18px;
+      font-weight:900;
+    }
+
+    /* Footer */
+    footer{
+      background:#0c2230;
+      color:#cfe5f3;
+      padding:34px 0;
+      margin-top:40px;
+    }
+    .footerGrid{
+      display:grid;
+      grid-template-columns: 1.2fr 1fr 1fr 1fr;
+      gap:18px;
+    }
+    .mutedFooter{color:rgba(207,229,243,0.75); font-size:14px;}
+    .footerTitle{font-weight:700; margin:0 0 10px;}
+    .footerLinks a{
+      display:block;
+      padding:6px 0;
+      font-size:14px;
+      color:rgba(207,229,243,0.85);
+    }
+    .footerLinks a:hover{color:#fff;}
+    .copyright{
+      margin-top:18px;
+      padding-top:14px;
+      border-top:1px solid rgba(255,255,255,0.12);
+      color:rgba(207,229,243,0.75);
+      font-size:13px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    @media (max-width: 980px){
+      .menu{display:none;}
+      .hamburger{display:inline-flex;}
+      .albumGrid{grid-template-columns: repeat(2, 1fr);}
+      .photoGrid{grid-template-columns: repeat(2, 1fr);}
+      .footerGrid{grid-template-columns:1fr 1fr;}
+    }
+    @media (max-width: 520px){
+      .albumGrid{grid-template-columns: 1fr;}
+      .photoGrid{grid-template-columns: 1fr;}
+      .footerGrid{grid-template-columns:1fr;}
+      .pageHero h1{font-size:28px;}
+      .albumCover{height:190px;}
+      .photoItem img{height:200px;}
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="index.html">
+          <img src="assets/img/logo.png" alt="Gavi Foundation and Trust Logo">
+          <div class="title">
+            <strong>Gavi Foundation and Trust</strong>
+            <span>Educate • Care • Conserve</span>
+          </div>
+        </a>
+
+        <nav class="menu">
+          <a href="index.html">Home</a>
+          <a href="about.html">About Us</a>
+          <a href="events.html">Events</a>
+          <a class="active" href="gallery.html">Gallery</a>
+          <a href="team.html">Team</a>
+          <a href="donate.html">Donate</a>
+          <a href="contact.php">Contact</a>
+        </nav>
+
+        <div class="actions">
+          <a class="btn btn-primary" href="donate.html">Donate</a>
+          <button class="hamburger" id="hamburgerBtn">☰</button>
+        </div>
+      </div>
+
+      <div class="mobileMenu" id="mobileMenu">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="events.html">Events</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="team.html">Team</a>
+        <a href="donate.html">Donate</a>
+        <a href="contact.php">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <div class="pageHero">
+    <div class="container">
+      <h1>Gallery</h1>
+      <p>Browse activity-wise photo albums from our initiatives and events.</p>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <section>
+    <div class="container">
+
+      <!-- ALBUM LIST VIEW -->
+      <div id="albumListView">
+        <div class="albumGrid">
+
+          <!-- NOTEBOOK DRIVE -->
+          <div class="albumCard" onclick="openAlbum('notebook_drive')">
+            <div class="albumCover">
+              <img src="assets/img/albums/notebook_drive/1.jpg" alt="Notebook Drive">
+            </div>
+            <div class="albumInfo">
+              <h3>Notebook Drive</h3>
+              <div class="albumMeta">
+                <span class="pill">📚 Education</span>
+                <span class="pill">📷 5 Photos</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- HEALTH CARE DRIVE -->
+          <div class="albumCard" onclick="openAlbum('health_care_drive')">
+            <div class="albumCover">
+              <img src="assets/img/albums/health_care_drive/1.jpg" alt="Health Care Drive">
+            </div>
+            <div class="albumInfo">
+              <h3>Health Care Drive</h3>
+              <div class="albumMeta">
+                <span class="pill">🏥 Health</span>
+                <span class="pill">📷 5 Photos</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <p style="margin-top:16px; color:var(--muted); font-size:14px;">
+          ✅ Add more albums anytime by uploading photos in folders inside <b>assets/img/albums/</b>.
+        </p>
+      </div>
+
+      <!-- ALBUM PHOTOS VIEW -->
+      <div id="albumPhotosView" style="display:none;">
+        <div class="albumHeader">
+          <div>
+            <h2 id="albumTitle">Album Title</h2>
+            <p id="albumDesc">Album description will appear here.</p>
+          </div>
+
+          <button class="btn" onclick="backToAlbums()">← Back to Albums</button>
+        </div>
+
+        <div class="photoGrid" id="photoGrid"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <div class="lightboxContent">
+      <div class="lightboxTop">
+        <b id="lightboxCaption">Photo</b>
+        <button class="closeBtn" id="closeBtn">✕ Close</button>
+      </div>
+
+      <div class="lightboxImgWrap">
+        <img id="lightboxImg" class="lightboxImg" src="" alt="Preview">
+
+        <div class="navBtns">
+          <button id="prevBtn">‹</button>
+          <button id="nextBtn">›</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footerGrid">
+
+        <div>
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+            <img src="assets/img/logo.png" alt="Logo" style="width:46px; height:46px; background:#fff; border-radius:16px; padding:6px;">
+            <div>
+              <div class="footerTitle">Gavi Foundation and Trust</div>
+              <div class="mutedFooter">Educate • Care • Conserve</div>
+            </div>
+          </div>
+          <div class="mutedFooter">
+            Supporting underprivileged students and rural communities through education, health, and conservation initiatives.
+          </div>
+        </div>
+
+        <div>
+          <div class="footerTitle">Quick Links</div>
+          <div class="footerLinks">
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="events.html">Events</a>
+            <a href="gallery.html">Gallery</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footerTitle">Support</div>
+          <div class="footerLinks">
+            <a href="donate.html">Donate</a>
+            <a href="team.html">Team</a>
+            <a href="contact.php">Contact</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footerTitle">Contact</div>
+          <div class="mutedFooter">
+            <b>GAVI FOUNDATION and TRUST (Regd.)</b><br/>
+            “Sri Gavi Kuteera”<br/>
+            Kannegala Village and Post,<br/>
+            Santhemarahalli Hobli,<br/>
+            Chamarajanagara Taluk and District - 571115<br/><br/>
+            📞 <b>9844987888</b><br/>
+            ✉️ <b>info@gavifoundationtrust.org.in</b>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="copyright">
+        <div>© <span id="year"></span> Gavi Foundation and Trust. All Rights Reserved.</div>
+        
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const hamburgerBtn = document.getElementById("hamburgerBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+    hamburgerBtn.addEventListener("click", () => {
+      mobileMenu.style.display = mobileMenu.style.display === "block" ? "none" : "block";
+    });
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // ===========================
+    // ALBUMS CONFIG (EDIT HERE)
+    // ===========================
+    const albums = {
+      notebook_drive: {
+        title: "Notebook Drive",
+        desc: "Photos from our notebook distribution drive supporting rural school students.",
+        photos: [
+          "assets/img/albums/notebook_drive/1.jpg",
+          "assets/img/albums/notebook_drive/2.jpg",
+          "assets/img/albums/notebook_drive/3.jpg",
+          "assets/img/albums/notebook_drive/4.jpg",
+          "assets/img/albums/notebook_drive/5.jpg"
+        ]
+      },
+
+      health_care_drive: {
+        title: "Health Care Drive",
+        desc: "Photos from our health care drive supporting rural and underserved communities.",
+        photos: [
+          "assets/img/albums/health_care_drive/1.jpg",
+          "assets/img/albums/health_care_drive/2.jpg",
+          "assets/img/albums/health_care_drive/3.jpg",
+          "assets/img/albums/health_care_drive/4.jpg",
+          "assets/img/albums/health_care_drive/5.jpg"
+        ]
+      }
+    };
+
+    const albumListView = document.getElementById("albumListView");
+    const albumPhotosView = document.getElementById("albumPhotosView");
+    const albumTitle = document.getElementById("albumTitle");
+    const albumDesc = document.getElementById("albumDesc");
+    const photoGrid = document.getElementById("photoGrid");
+
+    let currentPhotos = [];
+    let currentIndex = 0;
+
+    function openAlbum(key){
+      const album = albums[key];
+      if (!album) return;
+
+      albumTitle.textContent = album.title;
+      albumDesc.textContent = album.desc;
+
+      photoGrid.innerHTML = "";
+      currentPhotos = album.photos;
+
+      album.photos.forEach((src, i) => {
+        const div = document.createElement("div");
+        div.className = "photoItem";
+        div.innerHTML = `<img src="${src}" alt="Photo ${i+1}">`;
+        div.addEventListener("click", () => openLightbox(i));
+        photoGrid.appendChild(div);
+      });
+
+      albumListView.style.display = "none";
+      albumPhotosView.style.display = "block";
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function backToAlbums(){
+      albumPhotosView.style.display = "none";
+      albumListView.style.display = "block";
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    // Lightbox
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightboxImg");
+    const lightboxCaption = document.getElementById("lightboxCaption");
+    const closeBtn = document.getElementById("closeBtn");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+
+    function openLightbox(index){
+      currentIndex = index;
+      lightboxImg.src = currentPhotos[index];
+      lightboxCaption.textContent = `Photo ${index + 1} of ${currentPhotos.length}`;
+      lightbox.classList.add("open");
+    }
+
+    function closeLightbox(){
+      lightbox.classList.remove("open");
+      lightboxImg.src = "";
+    }
+
+    function showPrev(){
+      currentIndex = (currentIndex - 1 + currentPhotos.length) % currentPhotos.length;
+      openLightbox(currentIndex);
+    }
+
+    function showNext(){
+      currentIndex = (currentIndex + 1) % currentPhotos.length;
+      openLightbox(currentIndex);
+    }
+
+    closeBtn.addEventListener("click", closeLightbox);
+    prevBtn.addEventListener("click", showPrev);
+    nextBtn.addEventListener("click", showNext);
+
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (!lightbox.classList.contains("open")) return;
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowLeft") showPrev();
+      if (e.key === "ArrowRight") showNext();
+    });
+  </script>
+
+</body>
+</html>
